@@ -141,11 +141,11 @@
                     </b-col>
                 </b-row>
             </div>
-            <b-modal v-model="deleteModal" hide-footer hide-header centered>
+            <b-modal v-model="deleteModal" hide-footer hide-header centered class="deleteModal">
                 <p class="text-center">Are you sure you want to <b>delete {{this.forDelete.length}} item</b>?</p>
                 <div class="d-flex align-items-center justify-content-around">
-                    <b-button @click="deleteModal = false">Cancel</b-button>
-                    <b-button @click="deleteArr">Confirm</b-button>
+                    <b-button @click="deleteModal = false" class="deleteModal__cancel">Cancel</b-button>
+                    <b-button @click="deleteArr" class="deleteModal__confirm">Confirm</b-button>
                 </div>
             </b-modal>
             <b-modal v-model="deleteErrorModal" hide-footer hide-header centered>
@@ -349,8 +349,6 @@ export default {
                 background: rgba(0, 161, 30, 0.07)
                 .col:nth-child(2)
                     font-weight: bold
-
-
     .tableWrap
         width: 100%
         &__title
@@ -381,6 +379,7 @@ export default {
             &:focus, .btn-outline-success.focus
                 box-shadow: none
             &:hover
+                color: #fff
                 box-shadow: 0 0 0 0.2rem rgba(0, 161, 30, 0.5)
         .deleteBtn
             display: flex
@@ -393,8 +392,10 @@ export default {
                 margin-right: 5px
             & path
                 transition: .3s
-            &:hover path
-                fill: #fff
+            &:hover
+                color: #fff
+                & path
+                    fill: #fff
         .custom-control
             padding-left: 0
             width: max-content
@@ -426,7 +427,7 @@ export default {
                 color: #fff
                 border: 1px solid transparent
                 &.disabled
-                    color: #5B5E77
+                    color: #fff
                     border: 1px solid #C6CBD4
                     opacity: 0.3
             &__page
@@ -513,10 +514,6 @@ export default {
                     top: 50%
                     transform: translateY(-50%)
                     left: 5px
-
-
-
-
     .productRow:hover .deleteBtn
         opacity: 1
     #selectFirst label
@@ -527,4 +524,18 @@ export default {
         max-width: 300px
         p
             font-size: 14px
+    .deleteModal
+        &__cancel.btn-secondary
+            color: #212529
+            background: transparent
+            &:hover
+                color: #fff
+                background: #dc3545
+        &__confirm.btn-secondary
+            border: 1px solid #00A11E
+            background: #00A11E
+            &:hover
+                box-shadow: 0 0 0 0.2rem rgba(0, 161, 30, 0.25)
+                border: 1px solid #00A11E
+                background: #00A11E
 </style>
